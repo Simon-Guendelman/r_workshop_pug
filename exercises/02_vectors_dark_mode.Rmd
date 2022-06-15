@@ -111,11 +111,25 @@ my_vector # print vector
 
 1.1) Create some vectors. Create one vector with characters, one with numbers, and one with logicals. Save them all into different variables.
 
+```{r}
+my_vector1 <- c("hi", "bye", "great", "what")
+my_vector2 <- c(2, 5, 7, 12)
+my_vector3 <- c(TRUE, TRUE, FALSE, TRUE)
+```
+
+
+
 1.2) We saw that the `c()` function combines elements into a vector, but it can also combine vectors! Try to combine some of the vectors you previously created using the `c()` function.
+
+```{r}
+my_vector4 = c(my_vector1, my_vector2, my_vector3)
+```
+
+
 
 ### Optional
 
-This isn't the first time you've used a vector. In fact, everything we did in "basics" exercises was about vectors. E.g., `2` is a one-element vector, just like `"hello"`. For one-element vectors, we don't need `c()`, because there isn't anything that needs to be combined.
+This isn't the first time you've used a vector. In fact, everything we did in "basics" exercises was about vectors. E.g., `2` is a one-element vector, just = like `"hello"`. For one-element vectors, we don't need `c()`, because there isn't anything that needs to be combined.
 We can check whether something is a vector using the function `is.vector()`. It returns `TRUE` when something is a vector.
 This is how we can confirm that single elements are also a (very short) vector.
 We will later get to know data types that are not a vector.
@@ -141,10 +155,24 @@ c(1, 2, 5) + 1
 What do you expect the following code will produce?
 
 2.2) `c(1, 2, 5) - 1`
+```{r}
+ c(1, 2, 5) - 1
+```
+
 
 2.3) `c(1, 2, 5) * 2`
+```{r}
+c(1, 2, 5) * 2
+```
+
 
 2.4) `c(1, 2, 5) / 2`
+```{r}
+c(1, 2, 5) / 2
+```
+
+
+
 
 Vectors are one of the most important concepts of `R`.
 Sure, other programming languages have similar concepts, but in `R`, vectors are really powerful.
@@ -160,9 +188,22 @@ Now, you can infer what these lines of code will do:
 
 2.5) `c(2, 4, 6) - c(1, 0, 1)`
 
+```{r}
+c(2, 4, 6) - c(1, 0, 1)
+```
+
+
 2.6) `c(2, 4, 6) * c(1, 0, 1)`
+```{r}
+c(2, 4, 6) * c(1, 0, 1)
+```
+
 
 2.7) `c(2, 4, 6) / c(1, 2, 1)`
+```{r}
+c(2, 4, 6) / c(1, 2, 1)
+```
+
 
 However, things get *really* wild when we use vectors that don't have the same length.
 
@@ -175,6 +216,11 @@ c(2, 4, 6, 5, 0, 0) + c(1, 10)
 Let's look at this concept some more.
 
 2.8) Can you multiply **every other** element of `c(2, 4, 6, 4, 9, 12)` with 2? (I.e. only 4, 4 and 12 should be multiplied with 2 - the other elements should be left unchanged.)
+
+```{r}
+c(2, 4, 6, 4, 9, 12) * c(1, 2, 1, 2, 1, 2)
+```
+
 
 ### Optional
 

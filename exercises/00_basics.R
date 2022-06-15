@@ -84,15 +84,25 @@ typeof(3.2)
 # Let's take a look at how we can "produce" logicals.
 
 # 3.1) Run 12 > 3.
+12>3
 
 # 3.1) Run 12 == 12. What does it do? What happens if you try 12 = 12 instead?
+12 == 12
+12 = 12
 
-# 3.2) What is "cat" != "dog"?
+# 3.2) What is "cat" != "dog"? Is a cat not equal to dog
+"cat" != "dog"
 
 # 3.3) Try out: FALSE & FALSE, then FALSE & TRUE and finally, TRUE & TRUE. 
 #      What happens?
+FALSE & FALSE
+FALSE & TRUE #this will end up False!
+TRUE & TRUE
 
 # 3.4) Try the same as above, but replace & with | (alt gr + <). What does | do?
+FALSE | FALSE
+FALSE | TRUE #this will end up True!
+TRUE | TRUE
 
 ## OPTIONAL --------------------------------------------------------------------
 
@@ -122,8 +132,9 @@ typeof(3.2)
 
 single_number <- 7
 
+
 # By the way: There is a shortcut in RStudio that produces the little arrow <-
-# Try it out: alt + -
+# Try it out: alt + - (for mac option - )
 
 # 4.1) Type single_number (without quotation marks) into the console and hit 
 #      return. What happens?
@@ -133,6 +144,8 @@ single_number <- 7
 single_number <- 2
 
 # 4.3) Assign something to a variable with a name of your choice.
+single_new <- 9
+this_is_a_string <- "hello world"
 
 # 4.4) Examine what happens here. What is the result? What do you think will 
 #      single_number contain now? 2 or 6? Run single_number in the console to 

@@ -50,9 +50,8 @@ Technically, you could save your entire environment and load it whenever you ope
 You can read in data from an `.RData` file using the `load()` function.
 All it needs to know is the path where the `.RData` file we want to read in is stored.
 The data for this workshop are all stored in a folder called `"data_sets"`, and we want to read in the data file called `"hotdog.RData"`, so we load in the data like this:
-
 ```{r}
-load("exercises/data_sets/hotdog.RData")
+load("~/Desktop/R_course/r_workshop_pug/exercises/data_sets/hotdog.RData")
 
 # Should the paths above return an error for you, try going to
 # Tools -> Global Options -> R Markdown
@@ -120,15 +119,53 @@ Try out a few other functions. Here are some you could try:
 
 3.1) `max()` gives you the maximum value in a vector. What do you think `min()` does? Use both on `hotdog_2018` and/or `hotdog_2019`.
 
+```{r}
+min(hotdog_names)
+```
+```{r}
+min(hotdog_2018)
+```
+```{r}
+min(hotdog_2019)
+```
+
+
+
 3.2) Use `table()` on `hotdog_sex`. What do you get?
+
+```{r}
+table(hotdog_2018)
+table(hotdog_2019)
+table(hotdog_sex)
+```
 
 3.3) Try `mean()` and `sd()` - those return the mean and the standard deviation.
 
+
+```{r}
+mean(hotdog_2018)
+sd(hotdog_2018)
+```
+
 3.4) Use `summary()` on `hotdog_2018` and `hotdog_2019`. What is the difference to using `mean()` and `sd()`?
 
-3.5) Use `head()` and `tail()` on either of the vectors. What do these functions do?
+```{r}
+summary(hotdog_2018)
+summary(hotdog_2018)
+```
+3.5) Use `head()` and `tail()` on either of the vectors. What do these functions do? Head fx the beggining elements, tail fx the last elements
+
+```{r}
+head(hotdog_2018)
+tail(hotdog_2018)
+```
 
 3.6) How many hotdogs were eaten in total in the year 2019? Use the function `sum()`.
+
+```{r}
+sum(hotdog_2018)
+sum(hotdog_2019)
+```
 
 A lot of functions can take more than one argument.
 For example, you can control the behaviour of `head()` and `tail()` with an additional argument.
@@ -138,6 +175,12 @@ For example, you can control the behaviour of `head()` and `tail()` with an addi
 ```{r}
 head(hotdog_names, 3)
 ```
+
+```{r}
+tail(hotdog_names, 2)
+```
+
+
 
 We can see that arguments have a **position** in the function - for `head()`, the data belongs at the first position, and the number of elements we want to display comes second.
 `head()` will be unhappy if we just switch the order around:
@@ -172,7 +215,12 @@ To get only the name of the third contestant, we do this:
 hotdog_names[3]
 ```
 
+
 4.1) Can you find the name of the 5th contestant?
+
+```{r}
+hotdog_names[5]
+```
 
 What if we wanted to find the names of the 3rd **and** the 5th contestant?
 We can use another vector for indexing!
@@ -189,6 +237,11 @@ hotdog_names[3, 5]
 ```
 
 4.2) What if we want to see the first 3 contestants? (There are several ways to achieve this.)
+
+```{r}
+hotdog_names[1:3]
+hotdog_names[c(1,2,3)]
+```
 
 We can re-assign elements in a vector using indexing.
 For example, let's replace the third element in this vector of numbers:
@@ -207,7 +260,45 @@ Note how this re-assignment permanently changes the vector.
 
 4.3) Can you change the third and fourth element of `numbers` with different numbers? Can you achieve that in a single assignment (i.e. using `<-` only once)?
 
+```{r}
+numbers[c(3, 4)] <- c(6, 8)
+numbers
+```
+
+```{r}
+numbers[3:4] <- c(666, 777)
+numbers
+```
+
+```{r}
+numbers[3:4] <- 1000:1001
+numbers
+```
+
 4.4) Numbers only has four elements - what happens if you try to assign a fifth one?
+
+```{r}
+numbers[5] <- 15
+numbers
+```
+REmoving elements...
+
+
+```{r}
+numbers[-3] 
+numbers
+```
+
+```{r}
+numbers[-c(3,4)] 
+numbers
+```
+
+Here for permanent removing
+```{r}
+numbers <- numbers[-c(3,4)] 
+numbers
+```
 
 In most cases, we use logical comparison for indexing.
 Here is how this works: Say we have a vector called `numbers` that contains the number 1 - 4.
@@ -256,7 +347,23 @@ What a computer wants is a statement like this: "Show me all of the elements in 
 
 4.5) Write code that gives you all elements larger than 6 in the vector `1:10`.
 
+```{r}
+numbers <- 1:10
+numbers [numbers > 6]
+numbers
+```
+```{r}
+(1:10)[1:10 < 6]
+```
+
+
 4.6) Write code that replaces all elements larger than 6 in the vector `1:10` with the number 666.
+
+```{r}
+numbers <- 1:10
+numbers [numbers > 6] <- 666
+numbers
+```
 
 Let's apply indexing with logical vectors to our hotdog data.
 
@@ -266,16 +373,32 @@ That is not always the case; we can use a different vector for indexing, which i
 For example, I can get the names of the female hotdog contestants like this:
 
 ```{r}
-hotdog_names[hotdog_sex == "female"]
+hotdog_names[hotdog_sex == "male"]
 ```
 
 4.7) Which contestants improved, i.e. who ate more hotdogs in 2019 than in 2018?
 
+```{r}
+hotdog_names[hotdog_2019 > hotdog_2018]
+```
+
 4.8) Get the name of the person who ate the most hot dogs in 2019. Hint: You can use functions inside `[]` - try using `max()`!
+
+```{r}
+hotdog_names[hotdog_2019 == max(hotdog_2019)]
+```
 
 4.9) Can you find the name of the contestant who ate exactly the same number of hot dogs in 2018 and 2019?
 
+```{r}
+hotdog_names[hotdog_2019 == hotdog_2018]
+```
+
 4.10) Remember that you can combine logical comparisons using `&` ("and") and `|` ("or"). Can you get the names of the contestants that ate more than 25 hot dogs in 2019, but less than 30?
+
+```{r}
+hotdog_names [hotdog_2019 > 25 & hotdog_2019 < 30] 
+```
 
 ### Optional
 
@@ -335,15 +458,52 @@ Create a vector that has one or more missing values. Then examine the behaviour 
 
 5.1) `sd()`
 
-5.2) `min()` and `max()`
+```{r}
+sd(c(1, 20, NA, 12, 3))
+```
+
+```{r}
+sd(c(1, 20, NA, 12, 3), na.rm = TRUE)
+sd(c(1, 20, 12, 3))
+```
+
+5.2) `min()` and `max()`ç
+
+```{r}
+min(c(1, 20, NA, 12, 3))
+```
+
+```{r}
+max(c(1, 20, NA, 12, 3))
+```
+
 
 5.3) `summary()`
 
+```{r}
+summary(c(1, 20, NA, 12, 3))
+```
+
 5.4) `table()`
+
+```{r}
+table(c(1, 20, NA, 12, 3))
+```
 
 5.5) `head()` and `tail()`
 
+```{r}
+head(c(1, 20, NA, 12, 3))
+```
+```{r}
+tail(c(1, 20, NA, 12, 3))
+```
+
 5.6) `length()`
+
+```{r}
+length(c(1, 20, NA, 12, 3))
+```
 
 ### Optional
 
